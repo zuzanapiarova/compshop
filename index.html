@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <script src="https://kit.fontawesome.com/a10a6ec6fd.js" crossorigin="anonymous"></script>
+  <title>CompSHOP</title>
+</head>
+
+<body>
+    <nav>
+        <h1 href="#"><i class="fa-solid fa-computer"></i> &nbsp;CompSHOP</h1> 
+        <ul id='nav_links' class="links nav_links"> <!-- this list will be populated in javascript by links from database--></ul>   
+        <button id="cart"><i class="fa-solid fa-cart-shopping"></i></button>
+    </nav>
+
+  <main>
+    <h2>Welcome to CompSHOP.</h2>
+
+    <div class="container" id="shop"><!-- this div will be populated by javascript with products from the dummy database--></div>
+
+    <div id="overlay"><!--this puts a dark layer over the rest iof the page when the summary of hte order is opened --></div>
+    <div id="side_container">
+        <div class="summary_header">
+            <h2>Order summary</h2>
+            &nbsp;
+            <button id="close">X</button>
+        </div>
+        <div class="summary">  
+            <div id="summary_items"> <!-- this will be populated by items that ar added to cart dynamically in Javascript--></div>
+            <div class="summary_footer">
+                <p>Total</p>
+                <h2 id="total">€&nbsp;1349.99 </h2>
+                <button id="checkout"><i class="fa-solid fa-cart-shopping">&nbsp; Buy</i></button>
+            </div>
+        </div>
+    </div>
+        
+
+    </div>
+
+  </main>
+
+  <footer>
+    2024 CompSHOP &copy;  All rights reserved.  
+    <ul id='footer_links' class="links footer_links"><!-- this list will be populated by links by javascript--></ul>
+    <p>Coded by  &nbsp;  <a style="color: black" href="https://github.com/zuzanapiarova" target="_blank"><i class="fa-brands fa-github"></i>zuzanapiarova</a>.</p>
+ </footer>
+</body>
+<script src="./main.js" defer></script>
+</html>
