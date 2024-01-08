@@ -73,7 +73,7 @@ products.forEach(product => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="add" id="${product.id}" onCLick=addToCart()> 
+                                        <button class="add" id="${product.id}" onCLick=addToCart(${product.id})> 
                                             <i class="fa-solid fa-cart-shopping"></i>
                                             &nbsp;
                                             Add to cart
@@ -88,16 +88,13 @@ products.forEach(product => {
 loadProducts();
 
 const inCart = [];
-function addToCart(){
-    let currentElement = products[(event.target.id - 1)];
-    if(inCart.includes(currentElement)){
-        currentElement.quantity += 1;
-    } else {
-        inCart.push(currentElement);
-        currentElement.quantity += 1;
-    }
-    console.log(currentElement.quantity);
 
+function addToCart(id){
+    const currentElement = products[id - 1];
+    if(!inCart.includes(currentElement)){
+        inCart.push(currentElement);
+    }
+    currentElement.quantity += 1;
     //following lines of code dynamically update the HTML - reloads/rerenders the entire component that contains products
     shop.innerHTML = '';
     loadProducts();
@@ -105,18 +102,23 @@ function addToCart(){
 };
 
 //controls the +/- buttons that change quantity of each product
-function changeQuantity(productId){
-    const currentElement = products[productId - 1];
+function changeQuantity(id){
+    const currentElement = products[id - 1];
     if(event.target.className == 'increment'){
-        currentElement.quantity += 1;
+        addToCart(id);
     } else if(event.target.className == 'decrement'){
-        //do not allow the quantity to go under 0
-        if(currentElement.quantity == 0) return;
+        if(currentElement.quantity == 0) {
+            console.log(currentElement)
+
+             //do not allow the quantity to go under 0
+            return;
+        };
         currentElement.quantity -= 1;
+        shop.innerHTML = '';
+        loadProducts();
+        countTotal();
     }
-    shop.innerHTML = '';
-    loadProducts();
-    countTotal();
+    console.log(inCart)
 }
 
 //counts total and display at the open summary button and at the end of summary
@@ -130,32 +132,32 @@ function countTotal(){
 }
 
 //populate summary list with items from the inCart array
+const summaryCards = document.getElementById("summary_items");
 function loadSummary(){
-    const summaryCards = document.getElementById("summary_items");
-    console.log(inCart)
+    summaryCards.innerHTML = '';
     inCart.forEach(item => {
+        if(item.quantity >0){
         const itemTag = document.createElement('div');
         const divNode = `
                         <div class="cart_item">
                             <div class="item_quantity">
                                 <button class="increment">-</button>
-                                <p> 2 </p>
+                                <p>${item.quantity}</p>
                                 <button class="decrement">+</button>
                             </div>
                             <div class="item_info">
-                                <p>Product name</p>
-                                <p class="price">€&nbsp;1349.99 </p>
+                                <p>${item.name}</p>
+                                ${item.quantity <= 1 ? '' : `<p class="unit_price">€&nbsp;${item.unitPrice}&nbsp;/unit</p>` }
+                                <p class="price">€&nbsp;${item.unitPrice * item.quantity}</p>
                             </div> 
                         </div>                       
         `;
         itemTag.innerHTML = divNode;
         summaryCards.appendChild(itemTag);
-    });
+}});
 }
-loadSummary()
 
-
-
+cart.addEventListener("click", loadSummary)
 
 
 //vypni scrollovanie ked je zapnuty side container
