@@ -10,14 +10,14 @@ const summaryTotal = document.getElementById("total");
 const links = ['Home', 'Shop', 'About', 'Contact'];
 //products must be sorted according to ids, else it wont work properly 
 const products = [
-                    {id: 1, name: 'Computer', description: 'la jajajsbe ejbdja', image: "./images/computer.jpeg", unitPrice: 1229.99, quantity: 0 }, 
-                    {id: 2, name: 'Headphones', description: 'la jajajsbe ejbdja', image: './images/headphones.jpeg', unitPrice: 149.99, quantity: 0 }, 
-                    {id: 3, name: 'Laptop', description: 'la jajajsbe ejbdja', image: './images/laptop.jpeg', unitPrice: 799.99, quantity: 0 }, 
-                    {id: 4, name: 'Charger', description: 'la jajajsbe ejbdja', image: './images/charger.jpeg', unitPrice: 9.99, quantity: 0 }, 
-                    {id: 5, name: 'Keyboard', description: 'la jajajsbe ejbdja', image: './images/keyboard.jpeg', unitPrice: 129.99, quantity: 0 }, 
-                    {id: 6, name: 'Server', description: 'la jajajsbe ejbdja', image: './images/server.jpeg', unitPrice: 2999.99, quantity: 0 }, 
-                    {id: 7, name: 'Mouse', description: 'la jajajsbe ejbdja', image: './images/mouse.jpeg', unitPrice: 49.99, quantity: 0 }, 
-                    {id: 8, name: 'USB', description: 'la jajajsbe ejbdja', image: './images/usb.jpeg', unitPrice: 5.99, quantity: 0 }
+                    {id: 1, name: 'Computer', quantity: 0, unitPrice: 1229.99, image:"./images/computer.jpeg", description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
+                    {id: 2, name: 'Headphones', quantity: 0, image: './images/headphones.jpeg', unitPrice: 149.99, description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
+                    {id: 3, name: 'Laptop', quantity: 0, image: './images/laptop.jpeg', unitPrice: 799.99,description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
+                    {id: 4, name: 'Charger', quantity: 0, image: './images/charger.jpeg', unitPrice: 9.99,description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
+                    {id: 5, name: 'Keyboard', quantity: 0, image: './images/keyboard.jpeg', unitPrice: 129.99,description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
+                    {id: 6, name: 'Server', quantity: 0, image: './images/server.jpeg', unitPrice: 2999.99,description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
+                    {id: 7, name: 'Mouse', quantity: 0, image: './images/mouse.jpeg', unitPrice: 49.99,description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
+                    {id: 8, name: 'USB', quantity: 0, image: './images/usb.jpeg', unitPrice: 5.99,description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}
                 ];
 //add more or less of these items to see how the page looks like when it it more/less populated 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -61,6 +61,7 @@ function loadProducts(){
         const divNode = `
                             <div class="product_card">
                                         <div class="img-wrapper">
+                                            <img class="product_image" src="${product.image}">
                                         </div>
                                         <div class="product_info_container">
                                             <div class="description_container">
@@ -78,13 +79,13 @@ function loadProducts(){
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="price_quantity_wrapper">
+                                            <div class="buttons_wrapper"">
                                                 <button class="add" id="${product.id}" onCLick=addToCart(${product.id})> 
                                                     <i class="fa-solid fa-cart-shopping"></i>
                                                     &nbsp;
                                                     Add to cart
                                                 </button>
-                                                <button class="trash" onClick=removeFromCart(${product.id})> xxx</button>
+                                                <button class="trash" onClick=removeFromCart(${product.id})><i class="fa-solid fa-trash-can"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -106,17 +107,18 @@ function loadSummary(){
 
     inCart.forEach(item => {
         if(item.quantity > 0){
-        const itemTag = document.createElement('ul');
+        const itemTag = document.createElement('div');
+        itemTag.classList.add("summary_item_wrapper")
         const divNode = `
                         <li class="cart_item">
                             <div class="item_quantity">
                                 <button class="decrement" onCLick="changeQuantity(${item.id})">-</button>
                                 <p>${item.quantity}</p>
                                 <button class="increment" onCLick="changeQuantity(${item.id})">+</button>
+                                <p>${item.name}</p>
                             </div>
                             <div class="item_info">
-                                <p>${item.name}</p>
-                                ${item.quantity <= 1 ? '' : `<p class="unit_price">€&nbsp;${item.unitPrice}&nbsp;/unit</p>` }
+                                ${item.quantity <= 1 ? '&nbsp;' : `<p class="unit_price">€&nbsp;${item.unitPrice}&nbsp;/unit</p>` }
                                 <p class="price">€&nbsp;${(item.unitPrice * item.quantity).toFixed(2)}</p>
                             </div> 
                         </li>                       
@@ -130,7 +132,7 @@ cart.addEventListener("click", loadSummary);
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
 
-const inCart = [];
+let inCart = [];
 
 function addToCart(id){
     const currentElement = products[id - 1];
@@ -188,5 +190,15 @@ function countTotal(){
         total = total + (inCart[i].unitPrice * inCart[i].quantity);
     }
     cart.innerHTML = `€&nbsp;${total.toFixed(2)} &nbsp; <i class="fa-solid fa-cart-shopping"></i>`;
-    summaryTotal.innerHTML = `€&nbsp;${total.toFixed(2)} &nbsp;`;
+    summaryTotal.innerHTML = `€&nbsp;${total.toFixed(2)}`;
 }
+
+const clearCartBtn = document.getElementById("clear_cart");
+function clearCart(){
+    if(window.confirm('Are you sure you want to empty your cart?')){
+        inCart = [];
+        loadSummary();
+        countTotal();
+    };
+}
+clearCartBtn.addEventListener("click", clearCart)

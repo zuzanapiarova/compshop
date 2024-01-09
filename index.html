@@ -15,9 +15,13 @@
         <ul id='nav_links' class="links nav_links"> <!-- this list will be populated in javascript by links from database--></ul>   
         <button id="cart"><i class="fa-solid fa-cart-shopping"></i></button>
     </nav>
+    
 
   <main>
-    <h2>Welcome to CompSHOP.</h2>
+    <div class="intro_wrapper">
+        <h2>Welcome to CompSHOP.</h2>
+        <p class="intro">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam modi ratione aspernatur eum. Ab harum, aut molestiae fugiat obcaecati distinctio impedit hic quaerat nihil, soluta autem. Corporis officiis, velit fugiat excepturi natus iure exercitationem dolore praesentium laborum sunt quod eum, asperiores at! Ipsum numquam ratione magnam, distinctio, quibusdam, aspernatur suscipit non doloribus incidunt quos inventore facere molestias! Saepe, reprehenderit! Dolore aut, explicabo debitis expedita similique quia alias dolor dolores magnam quibusdam quidem distinctio eum iure enim illum! Magnam amet corporis ea molestias necessitatibus nihil ex ut, ullam iste, autem nisi et, tempora quisquam optio similique delectus officia animi alias! Nulla.</p>
+    </div>
     <div class="container" id="shop"><!-- this div will be populated by javascript with products from the dummy database--></div>
 
     <div id="overlay"><!--this puts a dark layer over the rest iof the page when the summary of hte order is opened --></div>
@@ -27,11 +31,14 @@
             &nbsp;
             <button id="close">X</button>
         </div>
-        <div class="summary">  
-            <div id="summary_items"> <!-- this will be populated by items that ar added to cart dynamically in Javascript--></div>
+        <div class="summary"> 
+            <div class="cart_wrapper">
+                <ul id="summary_items"> <!-- this will be populated by items that ar added to cart dynamically in Javascript--></ul>
+                <button id="clear_cart"><i class="fa-solid fa-trash-can"></i></button>
+            </div>
             <div class="summary_footer">
                 <p>Total</p>
-                <h2 id="total">€&nbsp;--</h2>
+                <h2 id="total">€&nbsp;0,00</h2>
                 <button id="checkout"><i class="fa-solid fa-cart-shopping">&nbsp; Buy</i></button>
             </div>
         </div>
