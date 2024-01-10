@@ -61,6 +61,7 @@ const productCards = document.getElementById("shop");
 function loadProducts(){
     products.forEach(product => {
         const productCardTag = document.createElement('div');
+        productCardTag.classList.add("product_card_wrapper");
         //create a node for each product that will be dynamically updated for each product from the products array by using template literals notation - `${}`
         //the syntax is as a normal HTML element as the component will act as a html element based on the id of the product it will get its information
         //

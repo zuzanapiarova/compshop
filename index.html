@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- displays site properly based on user's device -->
   <link rel="stylesheet" href="./style.css">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <script src="https://kit.fontawesome.com/a10a6ec6fd.js" crossorigin="anonymous"></script>
@@ -11,7 +11,7 @@
 
 <body>
     <nav>
-        <h1 href="#"><i class="fa-solid fa-computer"></i> &nbsp;CompSHOP</h1> 
+        <h1 class="nav_logo" href="#"><i class="fa-solid fa-computer"></i> &nbsp;CompSHOP</h1> 
         <ul id='nav_links' class="links nav_links"> <!-- this list will be populated in javascript by links from database--></ul>   
         <button id="cart"><i class="fa-solid fa-cart-shopping"></i></button>
     </nav>
@@ -29,7 +29,7 @@
         <div class="summary_header">
             <h2>Order summary</h2>
             &nbsp;
-            <button id="close">X</button>
+            <button id="close"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="summary"> 
             <div class="cart_wrapper">
