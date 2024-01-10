@@ -157,6 +157,12 @@ main{
     flex-direction: column;
 }
 
+.quantity_wrapper{
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+}
+
 .price{
     color: rgb(65, 65, 65);
 }
@@ -302,6 +308,10 @@ button:hover{
     justify-content: start;
     align-items: center;
     width: 50%;
+}
+
+.item_quantity {
+
 }
 
 .item_info{
