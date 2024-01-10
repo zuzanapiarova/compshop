@@ -7,20 +7,20 @@ const summaryTotal = document.getElementById("total");
 
 //------------------------------------------------------------------------------------------------------------------------------
 //consider this section as a dummy database that could be later fetched from a JSON file or an API instead - adding or changing is much easier than if hardcoded
-//links fot the nav and footer
+//links for the nav and footer
 const links = ['Home', 'Shop', 'About', 'Contact'];
 //products - will populate the main content of the page dynamically
 //must be sorted according to ids, else it wont work properly 
 //add more or less of product objects into the array to see how the page looks like when it it more/less populated 
 const products = [
-                    {id: 1, name: 'Computer', quantity: 0, unitPrice: 1229.99, image:"./images/computer.jpeg", description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
-                    {id: 2, name: 'Headphones', quantity: 0, image: './images/headphones.jpeg', unitPrice: 149.99, description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
-                    {id: 3, name: 'Laptop', quantity: 0, image: './images/laptop.jpeg', unitPrice: 799.99,description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
-                    {id: 4, name: 'Charger', quantity: 0, image: './images/charger.jpeg', unitPrice: 9.99,description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
-                    {id: 5, name: 'Keyboard', quantity: 0, image: './images/keyboard.jpeg', unitPrice: 129.99,description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
-                    {id: 6, name: 'Server', quantity: 0, image: './images/server.jpeg', unitPrice: 2999.99,description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
-                    {id: 7, name: 'Mouse', quantity: 0, image: './images/mouse.jpeg', unitPrice: 49.99,description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
-                    {id: 8, name: 'USB', quantity: 0, image: './images/usb.jpeg', unitPrice: 5.99,description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}
+                    {id: 1, name: 'Monitor', quantity: 0, unitPrice: 1229.99, image:"./images/monitor.jpg", description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
+                    {id: 2, name: 'Headphones', quantity: 0, image: './images/headphones.jpg', unitPrice: 149.99, description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
+                    {id: 3, name: 'Laptop', quantity: 0, image: './images/laptop.jpg', unitPrice: 799.99,description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
+                    {id: 4, name: 'Charger', quantity: 0, image: './images/charger.jpg', unitPrice: 9.99,description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
+                    {id: 5, name: 'Keyboard', quantity: 0, image: './images/keyboard.jpg', unitPrice: 129.99,description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
+                    {id: 6, name: 'Smart Watch', quantity: 0, image: './images/smartwatch.jpg', unitPrice: 299.99,description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
+                    {id: 7, name: 'Mouse', quantity: 0, image: './images/mouse.jpg', unitPrice: 49.99,description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}, 
+                    {id: 8, name: 'USB', quantity: 0, image: './images/usb.jpg', unitPrice: 5.99,description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, possimus?'}
                 ];
 let inCart = [];
 //------------------------------------------------------------------------------------------------------------------------------
