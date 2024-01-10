@@ -181,6 +181,7 @@ function removeFromCart(id){
     //again, the following lines will: set the content of the products component to 0, populate the products page again, and update the total again
     productCards.innerHTML = '';
     loadProducts();
+    loadSummary();
     countTotal();
 };
 
@@ -196,11 +197,13 @@ function changeQuantity(id){
         if(currentElement.quantity == 0) return;    //do not allow the quantity to go under 0  
         currentElement.quantity -= 1; //decrement the quantity of the product in the products array by 1
         if(currentElement.quantity == 0){ //if the quantity drops to 0, execute the following code, just like with the remove from cart function
-            removeFromCart(currentElement.id); //remove the product from cart by adding its id to the parameter of the remove from cart function
+            removeFromCart(id); //remove the product from cart by adding its id to the parameter of the remove from cart function
         }        
     }
     //again update the summary page and the total
+    productCards.innerHTML = '';
     loadSummary();
+    loadProducts();
     countTotal();
 }
 
@@ -208,7 +211,7 @@ function changeQuantity(id){
 function countTotal(){
     //set the total to 0 with every update of teh cart, so the new total is not added to the old total
     let total = 0;
-    //iterate over every element in the inCart array and add the price for unit multiplied by quantity to the total 
+    //iterate over every element in the inCart array, add the price for unit multiplied by quantity to the total to create a new total
     for(let i = 0; i < inCart.length; i++){
         total = total + (inCart[i].unitPrice * inCart[i].quantity);
     }
@@ -224,6 +227,7 @@ const clearCartBtn = document.getElementById("clear_cart");
 function clearCart(){
     if(window.confirm('Are you sure you want to empty your cart?')){ //alert the user they are about to remove the contents of the cart, and if they confirm, continue:
         inCart = []; //delete contents of the inCart array
+        loadProducts();
         loadSummary(); //load the summary component again - it will update to be empty as the inCart component is now empty
         countTotal(); //update the total price to 0 as there is nothing in the cart
     };
